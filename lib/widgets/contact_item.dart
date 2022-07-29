@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ContactItem extends StatelessWidget {
-  const ContactItem(
-      {Key? key,
-      required this.fullName,
-      required this.phoneNumber,
-      required this.onDeleteTap,
-      required this.onUpdateTap})
-      : super(key: key);
+  const ContactItem({Key? key, required this.fullName, required this.phoneNumber, required this.onDeleteTap, required this.onUpdateTap}) : super(key: key);
 
   final String fullName;
   final String phoneNumber;
@@ -18,17 +12,14 @@ class ContactItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.shade300,
-              spreadRadius: 5,
-              blurRadius: 5,
-              offset: const Offset(1, 3),
-            ),
-          ]),
+      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20), boxShadow: [
+        BoxShadow(
+          color: Colors.grey.shade300,
+          spreadRadius: 5,
+          blurRadius: 5,
+          offset: const Offset(1, 3),
+        ),
+      ]),
       child: Column(
         children: [
           ListTile(

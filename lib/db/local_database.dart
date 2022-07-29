@@ -45,8 +45,7 @@ class LocalDatabase {
 
 //-------------------------------------------Cached Contacts Table------------------------------------
 
-  static Future<CachedContact> insertCachedContact(
-      CachedContact cachedContact) async {
+  static Future<CachedContact> insertCachedContact(CachedContact cachedContact) async {
     final db = await getInstance.database;
     final id = await db.insert(contactsTable, cachedContact.toJson());
     return cachedContact.copyWith(id: id);
@@ -54,8 +53,7 @@ class LocalDatabase {
 
   static Future<int> deleteCachedContactById(int id) async {
     final db = await getInstance.database;
-    var t = await db.delete(contactsTable,
-        where: "${CachedContactsFields.id}=?", whereArgs: [id]);
+    var t = await db.delete(contactsTable, where: "${CachedContactsFields.id}=?", whereArgs: [id]);
     if (t > 0) {
       return t;
     } else {
@@ -63,31 +61,24 @@ class LocalDatabase {
     }
   }
 
-
-
-  static Future<int> updateCachedContact(
-      {required CachedContact cachedContact}) async {
+  static Future<int> updateCachedContact({required CachedContact cachedContact}) async {
     Map<String, dynamic> row = {
       CachedContactsFields.phone: cachedContact.phone,
       CachedContactsFields.fullName: cachedContact.fullName,
-
-
-  };
+    };
     final db = await getInstance.database;
-    return await db.update(contactsTable, row,
-    where: '${CachedContactsFields.id} = ?',
-    whereArgs: [cachedContact.id]);
-    }
-    static Future<int> deleteAllCachedCategories() async {
-      final db = await getInstance.database;
-      return await db.delete(contactsTable);
-    }
-
-  static Future<List<CachedContact>> getAllCachedUser()async{
-    final db= await getInstance.database;
-    const orderBy= "${CachedContactsFields.fullName} ASC";
-    final result =await db.query(contactsTable, orderBy: orderBy);
-    return result.map((json) => CachedContact.fromJson(json)).toList();
+    return await db.update(contactsTable, row, where: '${CachedContactsFields.id} = ?', whereArgs: [cachedContact.id]);
   }
 
+  static Future<int> deleteAllCachedCategories() async {
+    final db = await getInstance.database;
+    return await db.delete(contactsTable);
+  }
+
+  static Future<List<CachedContact>> getAllCachedUser() async {
+    final db = await getInstance.database;
+    const orderBy = "${CachedContactsFields.fullName} ASC";
+    final result = await db.query(contactsTable, orderBy: orderBy);
+    return result.map((json) => CachedContact.fromJson(json)).toList();
+  }
 }

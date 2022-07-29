@@ -3,8 +3,7 @@ import 'package:my_contact/db/cached_contact.dart';
 import 'package:my_contact/db/local_database.dart';
 
 class ContactAddScreen extends StatefulWidget {
-  const ContactAddScreen({Key? key, required this.listenerCallBack})
-      : super(key: key);
+  const ContactAddScreen({Key? key, required this.listenerCallBack}) : super(key: key);
   final ValueChanged<bool> listenerCallBack;
 
   @override
@@ -13,13 +12,10 @@ class ContactAddScreen extends StatefulWidget {
 
 class _ContactAddScreenState extends State<ContactAddScreen> {
   List<CachedContact> cachedContact = [];
-  Future<void>_init() async
-  {
+
+  Future<void> _init() async {
     cachedContact = await LocalDatabase.getAllCachedUser();
-    setState((){
-
-    });
-
+    setState(() {});
   }
 
   @override
@@ -27,6 +23,7 @@ class _ContactAddScreenState extends State<ContactAddScreen> {
     _init();
     super.initState();
   }
+
   final TextEditingController fullNameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
 
@@ -60,18 +57,13 @@ class _ContactAddScreenState extends State<ContactAddScreen> {
                   onPressed: () async {
                     String fullNameText = fullNameController.text;
                     String phoneText = phoneController.text;
-                    CachedContact cachedContact =  CachedContact(fullName: fullNameText, phone: phoneText);
+                    CachedContact cachedContact = CachedContact(fullName: fullNameText, phone: phoneText);
                     await LocalDatabase.insertCachedContact(cachedContact);
                     widget.listenerCallBack.call(true);
                     Navigator.pop(context);
-
-                    },
+                  },
                   child: Row(
-                    children: const [
-                      Text("Add contact"),
-                      SizedBox(width: 10),
-                      Icon(Icons.add_box)
-                    ],
+                    children: const [Text("Add contact"), SizedBox(width: 10), Icon(Icons.add_box)],
                   ))
             ],
           ),

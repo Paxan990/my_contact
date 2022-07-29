@@ -18,7 +18,7 @@ class _ContactsPageState extends State<ContactsPage> {
 //TODO 3 Read from database
   void _init() async {
     cachedContacts = await LocalDatabase.getAllCachedUser();
-    setState((){});
+    setState(() {});
   }
 
   @override
@@ -42,7 +42,7 @@ class _ContactsPageState extends State<ContactsPage> {
                       //TODO 5 Add new contact item
                       return ContactAddScreen(
                         listenerCallBack: (bool value) {
-                          if(value){
+                          if (value) {
                             _init();
                           }
                         },
@@ -76,8 +76,8 @@ class _ContactsPageState extends State<ContactsPage> {
             return ContactItem(
               //TODO 6 Delete contact item
               onDeleteTap: () {
-             LocalDatabase.deleteCachedContactById(cachedContacts[index].id!);
-             _init();
+                LocalDatabase.deleteCachedContactById(cachedContacts[index].id!);
+                _init();
               },
               fullName: cachedContacts[index].fullName,
               phoneNumber: cachedContacts[index].phone,
@@ -88,12 +88,11 @@ class _ContactsPageState extends State<ContactsPage> {
                   MaterialPageRoute(
                     builder: (BuildContext con) {
                       return ContactUpdateScreen(
-                          id: cachedContacts[index].id!,
+                        id: cachedContacts[index].id!,
                         initialFullName: cachedContacts[index].fullName,
-                        initialPhone:cachedContacts[index].phone,
+                        initialPhone: cachedContacts[index].phone,
                         listenerCallBack: (bool value) {
-                          if(value){
-                            print("updated!");
+                          if (value) {
                             _init();
                           }
                         },

@@ -60,12 +60,11 @@ class _ContactUpdateScreenState extends State<ContactUpdateScreen> {
               TextButton(
                   onPressed: () async {
                     await LocalDatabase.updateCachedContact(
-
                         cachedContact: CachedContact(
-                          id: widget.id,
-                          fullName: fullNameController.text,
-                          phone: phoneController.text,
-                        ));
+                      id: widget.id,
+                      fullName: fullNameController.text,
+                      phone: phoneController.text,
+                    ));
                     widget.listenerCallBack.call(true);
                     Navigator.pop(context);
                   },
